@@ -9,12 +9,15 @@ import glob
 # -----------------------------
 # Load trained model
 # -----------------------------
-model = joblib.load("crop_production_model.pkl")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+model_path = os.path.join(BASE_DIR, "crop_production_model.pkl")
+
+model = joblib.load(model_path)
 # -----------------------------
 # Find cleaned CSV file
 # -----------------------------
-csv_files = glob.glob("cleaned_production*.csv")
+csv_files = glob.glob(os.path.join(BASE_DIR, "cleaned_production*.csv"))
 
 if not csv_files:
     messagebox.showerror(
